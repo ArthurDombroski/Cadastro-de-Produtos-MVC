@@ -4,9 +4,14 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+const { sequelize } = require('./models');
+
 var indexRouter = require('./routes/index');
 
 var app = express();
+
+// cria as tabelas no banco caso ainda não existam
+sequelize.sync();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
