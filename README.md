@@ -4,7 +4,7 @@ Aplicação web para cadastro de produtos de uma pequena loja, desenvolvida no p
 
 ## Integrante
 
-- Arthur Dombroski — RM: (preencher)
+- Arthur Bianchi de Barros Maia Dombroski — RM: 20240008
 
 ## Como executar
 
