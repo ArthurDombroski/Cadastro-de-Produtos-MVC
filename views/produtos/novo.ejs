@@ -1,0 +1,26 @@
+<h1>Novo produto</h1>
+
+<form action="/produtos" method="POST">
+
+    <label>Nome:</label>
+    <input type="text" name="nome" required>
+
+    <br>
+
+    <label>Preço:</label>
+    <input type="number" name="preco" step="0.01" required>
+
+    <br>
+
+    <label>Quantidade:</label>
+    <input type="number" name="quantidade" value="0">
+
+    <br>
+
+    <button type="submit">
+        Salvar
+    </button>
+
+</form>
+
+<a href="/produtos">Voltar</a>
