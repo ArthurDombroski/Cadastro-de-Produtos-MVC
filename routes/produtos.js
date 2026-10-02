@@ -41,6 +41,27 @@ router.get('/novo', async (req, res) => {
   });
 });
 
+// Desafio 2: lista somente os produtos da categoria informada na URL
+router.get('/categoria/:categoriaId', async (req, res, next) => {
+  const categoria = await Categoria.findByPk(req.params.categoriaId);
+
+  if (!categoria) {
+    return next();
+  }
+
+  const produtos = await Produto.findAll({
+    where: {
+      categoriaId: categoria.id
+    },
+    order: [['nome', 'ASC']]
+  });
+
+  res.render('produtos/categoria', {
+    categoria,
+    produtos
+  });
+});
+
 router.post('/', async (req, res) => {
   await Produto.create(dadosDoProduto(req.body));
 

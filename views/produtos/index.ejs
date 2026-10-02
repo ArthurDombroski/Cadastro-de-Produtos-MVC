@@ -18,7 +18,15 @@
             <td><%= p.nome %></td>
             <td><%= p.preco %></td>
             <td><%= p.quantidade %></td>
-            <td><%= p.categoria ? p.categoria.nome : 'Sem categoria' %></td>
+            <td>
+                <% if (p.categoria) { %>
+                    <a href="/produtos/categoria/<%= p.categoria.id %>">
+                        <%= p.categoria.nome %>
+                    </a>
+                <% } else { %>
+                    Sem categoria
+                <% } %>
+            </td>
 
             <td>
                 <a href="/produtos/<%= p.id %>/editar">

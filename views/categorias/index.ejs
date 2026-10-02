@@ -7,6 +7,7 @@
     <tr>
         <th>ID</th>
         <th>Nome</th>
+        <th>Ações</th>
     </tr>
 
     <% categorias.forEach(c => { %>
@@ -14,6 +15,11 @@
         <tr>
             <td><%= c.id %></td>
             <td><%= c.nome %></td>
+            <td>
+                <a href="/produtos/categoria/<%= c.id %>">
+                    Ver produtos
+                </a>
+            </td>
         </tr>
 
     <% }) %>
