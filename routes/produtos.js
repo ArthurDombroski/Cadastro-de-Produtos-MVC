@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+const { Op } = require('sequelize');
 const { Produto, Categoria } = require('../models');
 
 // O <select> envia string vazia quando nenhuma categoria é escolhida;
@@ -20,8 +21,19 @@ function listarCategorias() {
   });
 }
 
+// Lista os produtos; com ?busca=termo filtra pelo nome (LIKE %termo%)
 router.get('/', async (req, res) => {
+  const busca = (req.query.busca || '').trim();
+  const where = {};
+
+  if (busca) {
+    where.nome = {
+      [Op.like]: `%${busca}%`
+    };
+  }
+
   const produtos = await Produto.findAll({
+    where,
     include: {
       model: Categoria,
       as: 'categoria'
@@ -29,7 +41,8 @@ router.get('/', async (req, res) => {
   });
 
   res.render('produtos/index', {
-    produtos
+    produtos,
+    busca
   });
 });
 

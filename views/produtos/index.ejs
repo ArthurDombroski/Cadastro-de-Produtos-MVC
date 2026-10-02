@@ -3,6 +3,23 @@
 <a href="/produtos/novo">Novo produto</a> |
 <a href="/categorias">Categorias</a>
 
+<form action="/produtos" method="GET">
+    <label>Pesquisar:</label>
+    <input type="text" name="busca" value="<%= busca %>">
+
+    <button type="submit">
+        Buscar
+    </button>
+
+    <% if (busca) { %>
+        <a href="/produtos">Limpar</a>
+    <% } %>
+</form>
+
+<% if (busca) { %>
+    <p><%= produtos.length %> produto(s) encontrado(s) para "<%= busca %>".</p>
+<% } %>
+
 <table border="1">
     <tr>
         <th>Nome</th>
