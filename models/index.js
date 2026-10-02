@@ -23,7 +23,28 @@ const Produto = sequelize.define('Produto', {
   }
 });
 
+const Categoria = sequelize.define('Categoria', {
+  nome: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true
+  }
+});
+
+// Relacionamento 1:N — uma categoria possui vários produtos
+// e cada produto pertence a uma categoria (chave estrangeira categoriaId).
+Categoria.hasMany(Produto, {
+  foreignKey: 'categoriaId',
+  as: 'produtos'
+});
+
+Produto.belongsTo(Categoria, {
+  foreignKey: 'categoriaId',
+  as: 'categoria'
+});
+
 module.exports = {
   sequelize,
-  Produto
+  Produto,
+  Categoria
 };

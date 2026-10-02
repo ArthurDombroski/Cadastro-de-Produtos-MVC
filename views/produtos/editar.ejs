@@ -32,6 +32,22 @@
 
     <br>
 
+    <label>Categoria:</label>
+    <select name="categoriaId">
+        <option value="">Sem categoria</option>
+
+        <% categorias.forEach(c => { %>
+            <option
+                value="<%= c.id %>"
+                <%= c.id === produto.categoriaId ? 'selected' : '' %>
+            >
+                <%= c.nome %>
+            </option>
+        <% }) %>
+    </select>
+
+    <br>
+
     <button type="submit">
         Atualizar
     </button>
